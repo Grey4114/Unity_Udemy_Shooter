@@ -1,28 +1,77 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Transform target;
+    [SerializeField] float chaseRange = 5f;
+
     NavMeshAgent navMeshAgent;
+    
+    float distanceToTarget = Mathf.Infinity;
 
+    bool isProvoked = false;
+    
 
-    // Start is called before the first frame update
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        // OnDrawGizmosSelected(); // only works when enemy is selected in scene view
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        SetDestination();
+        distanceToTarget = Vector3.Distance(target.position, transform.position);
+
+        if(isProvoked)
+        {
+            EngageTarget();
+        }
+        else if (distanceToTarget <= chaseRange)
+        {
+            isProvoked = true;
+            // navMeshAgent.SetDestination(target.position);
+        }
     }
 
 
-    void SetDestination()
+    private void EngageTarget()
     {
-        Debug.Log("Test");
+        if(distanceToTarget >= navMeshAgent.stoppingDistance)
+        {
+            ChaseTarget();
+        }
+        else if(distanceToTarget <= navMeshAgent.stoppingDistance)
+        {
+            AttackTarget();
+        }
+        
     }
+
+
+
+    private void ChaseTarget()
+    {
+        navMeshAgent.SetDestination(target.position);
+    }
+
+    private void AttackTarget()
+    {
+        Debug.Log(name + "Die Die Die" + target.name);
+    }
+
+    void OnDrawGizmosSelected() 
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
+
+        // Gizmos.color = new Color(1, 1, 0, 0.75F);
+        // Gizmos.DrawSphere(transform.position, explosionRadius);
+
+    }        
+
 }
