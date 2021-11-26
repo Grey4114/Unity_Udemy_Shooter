@@ -10,6 +10,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] float damage = 10f;
     [SerializeField] ParticleSystem muzzleFlash;
 
+    // Needs to be GameOject, not ParticleSytem to be instantiated and Destroyed
+    [SerializeField] GameObject hitEffect; 
+
 
     void Update()
     {
@@ -37,21 +40,33 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
         {
-            // Debug.Log("Bang!! " + hit.transform.name + " was hit!");
-            // TODO: addsome hit affect
-
+            
+            CreateHitImpact();
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
 
             // Error catching - if anything other then enemy is shot, does not return error
             if (target == null) return;
 
             // Otherwise enemy takes damage
-            target.TakeDamage(damage);
+            target.TakeDamage(damage); // Calls EnemyHealth and Deals Damage 
 
         }
         else
         {
             return;
+        }
+    }
+
+    private void CreateHitImpact()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(FPCamera.transform.position, FPCamera.transform.forward, out hit, range))
+        {
+            // LookRotation has the object faces the camera
+            // hit.normal has the effect face away from the objevt hit, towards the player
+            GameObject impact = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impact, .1f);
+
         }
     }
 }
