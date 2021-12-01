@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
 
     // Needs to be GameOject, not ParticleSytem to be instantiated and Destroyed
     [SerializeField] GameObject hitEffect; 
+    [SerializeField] Ammo ammoSlot;
 
 
     void Update()
@@ -26,8 +27,13 @@ public class Weapon : MonoBehaviour
     // Raycasting for weapon shot
     private void Shoot()
     {
-        PlayMuzzleFlash();
-        ProcessRaycast();
+        if(ammoSlot.GetCurrentAmmo() > 0)
+            {
+                PlayMuzzleFlash();
+                ProcessRaycast();
+                ammoSlot.ReduceCurrentAmmo();
+                // Debug.Log("Ammo: " + ammoSlot.GetCurrentAmmo());
+            }
     }
 
     private void PlayMuzzleFlash()
