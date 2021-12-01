@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    // DeathHandler menu;  // My version
     [SerializeField] float hitPoints = 100f;
 
     public void PlayerDamage(float damage)
@@ -13,7 +14,13 @@ public class PlayerHealth : MonoBehaviour
         
         if (hitPoints <= 0)
         {   
-            Debug.Log("Your Dead!!");
+            GetComponent<DeathHandler>().HandleDeath();
+
+            // Debug.Log("Your Dead!!");
+
+            // My version
+            // menu = FindObjectOfType<DeathHandler>();
+            // menu.HandleDeath();
         }
         
     }
