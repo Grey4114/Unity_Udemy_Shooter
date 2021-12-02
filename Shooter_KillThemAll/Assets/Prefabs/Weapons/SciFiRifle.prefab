@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2311957494885693332}
   - component: {fileID: 2311957494884285248}
   - component: {fileID: 1986524918459726118}
+  - component: {fileID: 1329013332479894786}
   m_Layer: 0
   m_Name: SciFiRifle
   m_TagString: Untagged
@@ -91,11 +92,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPCamera: {fileID: 0}
-  range: 100
-  damage: 10
+  range: 35
+  damage: 25
   muzzleFlash: {fileID: 233601537605953487, guid: e1066205596cd2345b0fffe8fa6fa29a,
     type: 3}
   hitEffect: {fileID: 103981423631626847, guid: ae840e59e177fda4d95e2bf07f94f3f2,
     type: 3}
   ammoSlot: {fileID: 3237880151340912694, guid: 6018ffdead721474085e7944f2895131,
     type: 3}
+  timeBetweenShots: 1
+--- !u!114 &1329013332479894786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2311957494882588692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738c332236b1e0948b6ed73671a74cf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  fpsController: {fileID: 2206736475089067495, guid: 6018ffdead721474085e7944f2895131,
+    type: 3}
+  zoomInFOV: 10
+  zoomOutFOV: 60
+  zoomInSensitivity: 0.5
+  zoomOutSensitivity: 2

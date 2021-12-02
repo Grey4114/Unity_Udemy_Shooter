@@ -6,6 +6,8 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class WeaponZoom : MonoBehaviour
 {
     [SerializeField] Camera playerCamera;
+    [SerializeField] RigidbodyFirstPersonController fpsController; // Removed Start() and made serailized 
+       
     [SerializeField] float zoomInFOV = 15f;
     [SerializeField] float zoomOutFOV = 60f;
     
@@ -13,14 +15,17 @@ public class WeaponZoom : MonoBehaviour
     [SerializeField] float zoomOutSensitivity = 2f;
 
 
-    RigidbodyFirstPersonController fpsController;
+
 
     bool zoomInToggle = true;
 
+
+    /* Removed to make room for better way to do zoom with multiple weapons
     private void Start() 
     {
        fpsController = GetComponent<RigidbodyFirstPersonController>();    
-    }
+    } */
+
 
     // Teacher solution
     // Zoom & Mouse sensitivity - right mouse button press to toggle zoom in/out
