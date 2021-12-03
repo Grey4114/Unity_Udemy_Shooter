@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391f67bfddaadb2408c1d58335f495b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentWeapon: 0
 --- !u!1 &2206736475083024389
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +64,7 @@ GameObject:
   - component: {fileID: 3237880151340912694}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,7 +221,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f2e0609d2fc5d478044a87512d4944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoAmount: 10
+  ammoSlots:
+  - ammoType: 0
+    ammoAmount: 100
+  - ammoType: 1
+    ammoAmount: 50
+  - ammoType: 2
+    ammoAmount: 10
 --- !u!1 &2206736475083024391
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,11 +426,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SciFi-Rifle
       objectReference: {fileID: 0}
-    - target: {fileID: 2311957494882588692, guid: 62a326907fffc1145962897637ce44f0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2311957494882340038, guid: 62a326907fffc1145962897637ce44f0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -481,6 +483,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1329013332479894786, guid: 62a326907fffc1145962897637ce44f0,
         type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 2206736475081910819}
+    - target: {fileID: 1329013332479894786, guid: 62a326907fffc1145962897637ce44f0,
+        type: 3}
       propertyPath: fpsController
       value: 
       objectReference: {fileID: 2206736475089067495}
@@ -492,7 +499,7 @@ PrefabInstance:
     - target: {fileID: 1986524918459726118, guid: 62a326907fffc1145962897637ce44f0,
         type: 3}
       propertyPath: range
-      value: 125
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1986524918459726118, guid: 62a326907fffc1145962897637ce44f0,
         type: 3}
@@ -509,6 +516,11 @@ PrefabInstance:
       propertyPath: ammoSlot
       value: 
       objectReference: {fileID: 3237880151340912694}
+    - target: {fileID: 1986524918459726118, guid: 62a326907fffc1145962897637ce44f0,
+        type: 3}
+      propertyPath: ammoType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62a326907fffc1145962897637ce44f0, type: 3}
 --- !u!1 &2367389764631372902 stripped
@@ -635,6 +647,11 @@ PrefabInstance:
       propertyPath: ammoSlot
       value: 
       objectReference: {fileID: 3237880151340912694}
+    - target: {fileID: 1199351708776059964, guid: 72729c35c223e7748a36d324ab16e52f,
+        type: 3}
+      propertyPath: ammoType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5780941189205397383, guid: 72729c35c223e7748a36d324ab16e52f,
         type: 3}
       propertyPath: playerCamera
@@ -675,11 +692,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SciFi-Pistol
-      objectReference: {fileID: 0}
-    - target: {fileID: 8886176247630149388, guid: c7fed95f7756a8941ae4756d0e72dbce,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8882385683404280258, guid: c7fed95f7756a8941ae4756d0e72dbce,
         type: 3}
@@ -741,6 +753,11 @@ PrefabInstance:
       propertyPath: FPCamera
       value: 
       objectReference: {fileID: 2206736475081910819}
+    - target: {fileID: 3602922126268541909, guid: c7fed95f7756a8941ae4756d0e72dbce,
+        type: 3}
+      propertyPath: range
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3602922126268541909, guid: c7fed95f7756a8941ae4756d0e72dbce,
         type: 3}
       propertyPath: muzzleFlash

@@ -14,11 +14,7 @@ public class WeaponZoom : MonoBehaviour
     [SerializeField] float zoomInSensitivity = .5f;
     [SerializeField] float zoomOutSensitivity = 2f;
 
-
-
-
-    bool zoomInToggle = true;
-
+    bool zoomInToggle = false;
 
     /* Removed to make room for better way to do zoom with multiple weapons
     private void Start() 
@@ -35,20 +31,40 @@ public class WeaponZoom : MonoBehaviour
         {
             if(zoomInToggle==false)
             {
-                zoomInToggle = true;
-                playerCamera.fieldOfView=zoomInFOV;
-                fpsController.mouseLook.XSensitivity = zoomInSensitivity;
-                fpsController.mouseLook.YSensitivity = zoomInSensitivity;
+                ZoomIn();
             }
             else
             {
-                zoomInToggle = false; 
-                playerCamera.fieldOfView=zoomOutFOV;
-                fpsController.mouseLook.XSensitivity = zoomOutSensitivity;
-                fpsController.mouseLook.YSensitivity = zoomOutSensitivity;
+                ZoomOut();
             }
         }
     }
+
+    // When the weapon this script is on is disable, via weapon switch, ZoomOut is activated 
+    private void OnDisable() 
+    {
+        ZoomOut();
+    }
+
+
+    private void ZoomIn()
+    {
+        zoomInToggle = true;
+        playerCamera.fieldOfView = zoomInFOV;
+        fpsController.mouseLook.XSensitivity = zoomInSensitivity;
+        fpsController.mouseLook.YSensitivity = zoomInSensitivity;
+    }
+
+
+    private void ZoomOut()
+    {
+        zoomInToggle = false;
+        playerCamera.fieldOfView = zoomOutFOV;
+        fpsController.mouseLook.XSensitivity = zoomOutSensitivity;
+        fpsController.mouseLook.YSensitivity = zoomOutSensitivity;
+    }
+
+
 
 
     /* My solution to the Zoom - Hold down right mouse button

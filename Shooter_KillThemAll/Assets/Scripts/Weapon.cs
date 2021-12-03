@@ -13,10 +13,18 @@ public class Weapon : MonoBehaviour
     // Needs to be GameOject, not ParticleSytem to be instantiated and Destroyed
     [SerializeField] GameObject hitEffect; 
     [SerializeField] Ammo ammoSlot;
+    [SerializeField] AmmoType ammoType;
+    
 
     [SerializeField] float timeBetweenShots = 0.5f;
 
     bool canShoot = true;
+
+    // This removes the shot delay when switching weapons
+    private void OnEnable() 
+    {
+        canShoot = true;
+    }
 
     void Update()
     {
@@ -29,17 +37,17 @@ public class Weapon : MonoBehaviour
 
     // Raycasting for weapon shot
     // Changes from private void to Coroutine 
+    // Add a time delay after each shot, depending on weapon
     IEnumerator Shoot()  
     {
         canShoot = false;
-        if(ammoSlot.GetCurrentAmmo() > 0)
+        if(ammoSlot.GetCurrentAmmo(ammoType) > 0)
         {
             PlayMuzzleFlash();
             ProcessRaycast();
-            ammoSlot.ReduceCurrentAmmo();
-            // Debug.Log("Ammo: " + ammoSlot.GetCurrentAmmo());
+            ammoSlot.ReduceCurrentAmmo(ammoType);
         }
-        yield return new WaitForSeconds(timeBetweenShots);
+        yield return new WaitForSeconds(timeBetweenShots);      
         canShoot = true;
     }
 
