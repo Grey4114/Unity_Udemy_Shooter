@@ -67,6 +67,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -100,7 +101,8 @@ MonoBehaviour:
     type: 3}
   ammoSlot: {fileID: 3237880151340912694, guid: 6018ffdead721474085e7944f2895131,
     type: 3}
-  timeBetweenShots: 1
+  ammoType: 0
+  timeBetweenShots: 0.6
 --- !u!114 &1329013332479894786
 MonoBehaviour:
   m_ObjectHideFlags: 0

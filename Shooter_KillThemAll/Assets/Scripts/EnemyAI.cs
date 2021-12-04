@@ -10,19 +10,26 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float chaseRange = 5f;
     [SerializeField] float turnSpeed = 5f;
 
-    NavMeshAgent navMeshAgent;
-    
+    NavMeshAgent navMeshAgent;    
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
+    EnemyHealth health;
     
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        health = GetComponent<EnemyHealth>();
     }
 
 
     void Update()
     {
+        if (health.IsDead())
+        {
+            enabled = false;  // Turns off the EnemyAI script
+            navMeshAgent.enabled = false;  // Turns off the Nav Mesh
+        }
+        
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         if(isProvoked)
         {
@@ -31,7 +38,7 @@ public class EnemyAI : MonoBehaviour
         else if (distanceToTarget <= chaseRange)
         {
             isProvoked = true;
-        }
+        }    
     }
 
     public void OnDamageTaken()
@@ -48,6 +55,7 @@ public class EnemyAI : MonoBehaviour
         }
         else if(distanceToTarget <= navMeshAgent.stoppingDistance)
         {
+            Debug.Log("Attack");
             AttackTarget();
         }
         

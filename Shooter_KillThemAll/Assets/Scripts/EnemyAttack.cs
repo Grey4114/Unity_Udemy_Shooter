@@ -15,6 +15,7 @@ public class EnemyAttack : MonoBehaviour
 
     public void AttackHitEvent()
     {
+        Debug.Log("HiT");
         if (target == null) return;
 
         // My code
