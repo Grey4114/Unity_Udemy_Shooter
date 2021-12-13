@@ -18,13 +18,18 @@ public class EnemyAttack : MonoBehaviour
         Debug.Log("HiT");
         if (target == null) return;
 
+
         // My code
         //PlayerHealth player = target.GetComponent<PlayerHealth>();  
         //player.PlayerDamage(damage);
 
-        target.PlayerDamage(damage);  
+        target.PlayerDamage(damage);
+        target.GetComponent<DisplayDamage>().ShowDamageImpact();  // Shows player Damage  
 
-        Debug.Log("Bang! Hit you!");
+        //Debug.Log("Bang! Hit you!");
+
+
+
     }
 
 }
